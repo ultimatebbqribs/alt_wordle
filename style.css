@@ -1,0 +1,21 @@
+#main-grid{
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 5px;
+    /* min-height: 600px; */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+
+
+}
+
+.box{
+    border: solid rgb(85, 85, 85) 3px;
+    height: 80px;
+}
+
+body {
+    background-color: black;
+}

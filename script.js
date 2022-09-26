@@ -12,11 +12,28 @@ function computerPicksWord(){
 }
 computerPicksWord()
 
-function onLoad(){
-    let gridDiv = document.getElementById('main-grid')
-    let newDiv = document.createElement('div')
-    for(let i = 0; i < 6; i++){
-            gridDiv.append(newDiv);
-        }
+let keyArr = document.getElementsByClassName('key')
+for(let item of keyArr){
+        item.addEventListener('click', playerKey)
+        item.addEventListener('click', addGuess)
     }
-onLoad()
+        
+function playerKey(evt){
+    let clickedId = evt.target.innerHTML
+    playerWord.push(clickedId)
+    console.log(clickedId)
+    console.log(playerWord)
+    return clickedId
+    addGuess
+}
+
+function addGuess(evt){
+    let clickedId = evt.target.innerHTML
+    let row1 = document.getElementsByClassName('row-1')
+    console.log(typeof(playerKey))
+    console.log(typeof(row1))
+        for(let box of row1){
+            box.append(clickedId)
+        }
+    
+}

@@ -30,7 +30,7 @@
 }
 
 body {
-    background-color: black;
+    /* background-color: black; */
 }
 
 
@@ -50,8 +50,14 @@ body {
 }
 
 .row{
-    /* border: solid white; */
     text-align: center;
+}
+
+#enter{
+    width: 90px;
+}
+#delete{
+    width: 90px
 }
 
 #row-2{

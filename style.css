@@ -16,6 +16,13 @@
 
 
 }
+#title{
+    color: white;
+    text-align: center;
+    margin-bottom: 80px;
+    padding-bottom: 20px;
+    border-bottom: solid gray 2px;
+}
 
 .box{
     border: solid rgb(85, 85, 85) 3px;
@@ -36,6 +43,10 @@ body {
     margin: 2px;
     font-size: 17px;
     font-weight:800;
+    cursor: pointer;
+}
+.key:active{
+    border-style:outset;
 }
 
 .row{

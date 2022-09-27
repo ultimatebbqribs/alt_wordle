@@ -12,19 +12,19 @@ function computerPicksWord(){
     }
 }
 computerPicksWord()
-
+//add keyboard event listeners 
 let keyArr = document.getElementsByClassName('key')
 for(let item of keyArr){
-    // let inside = item.innerHTML
-    // if(inside = "ENTER"){
-    //     item.addEventListener('click', enterKey)
-    // if(inside = "DEL"){
-    //     item.addEventListener('click', delKey)
-    //     }
-    // else{
+    let inside = item.innerHTML
+    if(inside == "DEL"){
+        item.addEventListener('click', delKey)
+        }
+     if(inside == "ENTER"){
+         item.addEventListener('click', enterKey)}
+     else{
         item.addEventListener('click', playerKey)}
         // item.addEventListener('click', printGuess)
-// }}
+ }
 //click counter     
 let count = -1
 //row counter
@@ -55,8 +55,23 @@ function printGuess(evt){
 
 function enterKey(){
     console.log("you pressed enter")
+    if(playerWord.length == 5){
+        checkResult()
+    }
 }
 
 function delKey(){
     console.log("you pressed del")
+    playerWord.pop()
+    console.log(playerWord)
+    printGuess()
+}
+
+function checkResult(){
+    console.log(playerWord)
+    if(playerWord == computerWord){
+        winState()
+    }
+    else(console.log("you lose"))
+
 }

@@ -15,38 +15,48 @@ computerPicksWord()
 
 let keyArr = document.getElementsByClassName('key')
 for(let item of keyArr){
-        item.addEventListener('click', playerKey)
-        item.addEventListener('click', printGuess)
-    }
+    // let inside = item.innerHTML
+    // if(inside = "ENTER"){
+    //     item.addEventListener('click', enterKey)
+    // if(inside = "DEL"){
+    //     item.addEventListener('click', delKey)
+    //     }
+    // else{
+        item.addEventListener('click', playerKey)}
+        // item.addEventListener('click', printGuess)
+// }}
 //click counter     
 let count = -1
+//row counter
 let rowCount = 0
 
 
 
 function playerKey(evt){
-    let clickedId = evt.target.innerHTML
-    playerWord.push(clickedId)
     count++
-    console.log(count)
+    let clickedId = evt.target.innerHTML
+    if(playerWord.length <= 5){
+    playerWord.push(clickedId)}
+
     if(count % 5 == 0){
         rowCount++
-        count = 0 
+        count = 0
     }
+    printGuess(evt)
 }
 
 function printGuess(evt){
+    if(playerWord.length <= 5){
     let clickedId = evt.target.innerHTML
     let boxes = document.getElementsByClassName("row-"+rowCount)
-    boxes[count].innerHTML = playerWord[count]
+    boxes[playerWord.length -1].innerHTML = playerWord[count]
+    console.log(playerWord)}
 }
 
-function checkGuess(){
-    if(count == 4){
-    for(let item of keyArr){
-        item.removeEventListener('click', playerKey)
-        
-    }
-    }
+function enterKey(){
+    console.log("you pressed enter")
 }
-checkGuess()
+
+function delKey(){
+    console.log("you pressed del")
+}

@@ -38,7 +38,7 @@ body {
 }
 
 
-.key{
+.key, .enter-key, .delete-key{
     height: 75px;
     min-width: 60px;
     border-radius: 8px;
@@ -85,4 +85,9 @@ body {
     right: 0;
 }
 
-
+.match{
+    background-color: green;
+}
+.partial-match{
+    background-color: magenta;
+}

@@ -4,6 +4,8 @@ allWords = ["aback", "abase", "abate", "abaya", "abbey", "abbot", "abets", "abho
 computerWord = []
 playerWord = []
 
+
+
 function computerPicksWord(){
     let randomNum =  Math.floor(Math.random()* allWords.length)
     let cword = allWords[randomNum]
@@ -13,65 +15,83 @@ function computerPicksWord(){
 }
 computerPicksWord()
 //add keyboard event listeners 
+let enterKey = document.getElementById('enter').addEventListener('click', pressEnter)
+let delKey = document.getElementById("delete").addEventListener('click', pressDelete)
 let keyArr = document.getElementsByClassName('key')
 for(let item of keyArr){
-    let inside = item.innerHTML
-    if(inside == "DEL"){
-        item.addEventListener('click', delKey)
-        }
-     if(inside == "ENTER"){
-         item.addEventListener('click', enterKey)}
-     else{
-        item.addEventListener('click', playerKey)}
-        // item.addEventListener('click', printGuess)
+        item.addEventListener('click', playerKey)
  }
 //click counter     
-let count = -1
+let count = playerWord.length
 //row counter
-let rowCount = 0
-
-
+let rowCount = 1
 
 function playerKey(evt){
-    count++
     let clickedId = evt.target.innerHTML
-    if(playerWord.length <= 5){
+    if(count < 5){
     playerWord.push(clickedId)}
-
-    if(count % 5 == 0){
-        rowCount++
-        count = 0
-    }
-    printGuess(evt)
+    // if(count % 5 == 0){
+    //     rowCount++
+    //     // count = 0
+    // }
+    printGuess()
 }
-
-function printGuess(evt){
-    if(playerWord.length <= 5){
-    let clickedId = evt.target.innerHTML
+function printGuess(){
+    if(count < 5){
+    // let clickedId = evt.target.innerHTML
+    // console.log(clickedId)
     let boxes = document.getElementsByClassName("row-"+rowCount)
     boxes[playerWord.length -1].innerHTML = playerWord[count]
-    console.log(playerWord)}
+    count = playerWord.length}
 }
 
-function enterKey(){
-    console.log("you pressed enter")
+function pressEnter(){
     if(playerWord.length == 5){
         checkResult()
     }
+    else{
+        console.log("not enough letters")
+    }
 }
 
-function delKey(){
+function pressDelete(){
     console.log("you pressed del")
     playerWord.pop()
-    console.log(playerWord)
+    count = playerWord.length
+    console.log(count)
     printGuess()
 }
 
 function checkResult(){
-    console.log(playerWord)
-    if(playerWord == computerWord){
-        winState()
+    for(i = 0; i < playerWord.length; i++){
+        if(playerWord[i] == computerWord[i]){
+            exactLetterMatch(playerWord[i])
+        }
+        if(!(playerWord[i] == computerWord[i]) && computerWord.includes(playerWord[i])){
+            partialLetterMatch(playerWord[i])
+        }
     }
-    else(console.log("you lose"))
+    if(playerWord == computerWord){
+        winState()}
 
-}
+    }
+
+    function exactLetterMatch(match_letter){
+        let boxes = document.getElementsByClassName("row-"+rowCount)
+        num = playerWord.indexOf(match_letter)
+        boxes[num].classList.add("match")
+
+
+    }
+
+    function partialLetterMatch(letter){
+        let boxes = document.getElementsByClassName("row-"+rowCount)
+        num = playerWord.indexOf(letter)
+        boxes[num].classList.add("partial-match")
+        rowCount +1
+
+        // console.log(playerWord.indexOf(letter))
+        // console.log(computerWord.indexOf(letter))
+    }
+    console.log(computerWord)
+    console.log(playerWord)

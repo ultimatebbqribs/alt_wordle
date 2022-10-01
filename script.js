@@ -41,20 +41,21 @@ function printGuess(){
 }
 
 function validWords(){
-    // let w = playerWord.join('')
-    //     if(validArray.includes(w)){
+    let w = playerWord.join('')
+        if(validArray.includes(w)){
             checkResult()
         }
-    //     else if(!validArray.includes(w)){
-    //         alert("not a word")
-    //     }
+        else if(!validArray.includes(w)){
+            alert("not a word")
+        }
         
-    // }
+    }
 
 
 function pressEnter(){
     if(playerWord.length == 5){
         validWords()
+        
 
 
     }
@@ -119,6 +120,9 @@ function checkResult(){
     function noLetterMatch(letter, index){
         let boxes = document.getElementsByClassName("row-"+rowCount)
         boxes[index].classList.add("no-match")
+    }
+
+    function roundCount(){
     }
     console.log(computerWord)
     console.log(playerWord)

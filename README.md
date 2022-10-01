@@ -4,7 +4,6 @@ Project #1 for General Assembly software dev course
 
 [Wordle Project](https://ultimatebbqribs.github.io/alt_wordle/)
 
-
 # Wordle breakdown
 
 # Actions

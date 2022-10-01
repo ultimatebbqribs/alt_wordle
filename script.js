@@ -42,12 +42,15 @@ function printGuess(){
 
 function validWords(){
     // let w = playerWord.join('')
-    // for(word of validArray){
-    //     if(w == word){
+    //     if(validArray.includes(w)){
             checkResult()
+        }
+    //     else if(!validArray.includes(w)){
+    //         alert("not a word")
     //     }
+        
     // }
-}
+
 
 function pressEnter(){
     if(playerWord.length == 5){
@@ -56,7 +59,7 @@ function pressEnter(){
 
     }
     else{
-        console.log("not enough letters")
+        alert("not enough letters")
     }
 }
 
@@ -69,10 +72,11 @@ function pressDelete(){
 }
 
 function checkResult(){
-    for(i = 0; i < playerWord.length; i++){console.log(i)
+    let answerCheck = playerWord
+    for(i = 0; i < playerWord.length; i++){
         if(playerWord[i] == computerWord[i]){
             exactLetterMatch(playerWord[i], i)
-            playerWord.slice(i)
+            answerCheck.push(i)
         }
         
         // for(letter of computerWord){
@@ -81,11 +85,12 @@ function checkResult(){
 
         else if(!(playerWord[i] == computerWord[i]) && computerWord.includes(playerWord[i])){
             partialLetterMatch(playerWord[i], i)
-            playerWord.slice(i)
+            answerCheck.push(i)
         }
         else{
             noLetterMatch(playerWord[i], i)}
     }
+    console.log(playerWord)
     if(playerWord == computerWord){
         winState()}
 

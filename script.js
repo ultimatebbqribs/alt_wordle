@@ -13,6 +13,7 @@ function computerPicksWord() {
     for (letter of cword) {
         computerWord.push(letter.toUpperCase())
     }
+    return randomNum
 }
 computerPicksWord()
 //add keyboard event listeners 
@@ -49,7 +50,6 @@ function validWords() {
     let w = playerWord.join('')
     if (validArray.includes(w)) {
         checkResult()
-        console.log(rowCount)
         finishGuess()
     }
     else if (!validArray.includes(w)) {
@@ -81,6 +81,7 @@ function checkResult() {
     if (playerWord == computerWord) {
         winState()
     }
+
     //1st loop adds default grey tiles, checks for exact match and removes letter from letter checker
     for (i = 0; i < playerWord.length; i++) {
         noLetterMatch(playerWord[i], i)
@@ -98,11 +99,16 @@ function checkResult() {
 
 
 
+
 function finishGuess() {
     rowCount++ 
+    if(rowCount == 7){
+        return gameOver()
+
+    }
     playerWord = []
     count = 0
-    console.log(playerWord)
+    winCounter = 0
 }
 function exactLetterMatch(match_letter, index) {
     let boxes = document.getElementsByClassName("row-" + rowCount)
@@ -142,6 +148,10 @@ function winState(){
     if(confirm('you win! Would you like to play again?')){
     playAgain()}
     else(alert("no more wordle for you"))
+    return
+}
+function gameOver(){
+    alert("better luck next time! The word was " + allWords[computerPicksWord()].toUpperCase() )
 }
 function playAgain(){
     let boxes = document.getElementsByClassName("box")

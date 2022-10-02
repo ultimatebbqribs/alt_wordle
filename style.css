@@ -91,7 +91,7 @@ body {
     background-color: green;
 }
 .partial-match{
-    background-color: magenta;
+    background-color: rgb(255, 230, 0);
 }
 
 .no-match{

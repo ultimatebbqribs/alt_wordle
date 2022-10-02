@@ -113,7 +113,9 @@ function exactLetterMatch(match_letter, index) {
     document.getElementById(match_letter).classList.add("match")
     winCounter++
     if(winCounter == 5){
-        winState()
+        setTimeout(function(){
+            winState()
+    },500)
     }
 
 }
@@ -147,6 +149,10 @@ function playAgain(){
         box.innerHTML = ""
         box.classList.remove("match", "no-match", "partial-match")
     }
+    for (let item of keyArr) {
+        item.classList.remove("match", "no-match", "partial-match")
+    }
+
     rowCount = 0
     winCounter = 0
     computerWord = []

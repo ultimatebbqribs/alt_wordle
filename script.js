@@ -74,30 +74,31 @@ function pressDelete() {
 }
 
 function checkResult() {
-     let answerCheck = [...computerWord]
-
-
-    for (i = 0; i < playerWord.length; i++) {
-        if (playerWord[i] == answerCheck[i]) {
-            exactLetterMatch(playerWord[i], i)
-            answerCheck[i] = "$"
-            console.log(answerCheck)
-        }
-
-        else if (!(playerWord[i] == answerCheck[i]) && answerCheck.includes(playerWord[i])) {
-            partialLetterMatch(playerWord[i], i)
-            answerCheck[i] = "$"
-        }
-        else {
-            noLetterMatch(playerWord[i], i)
-        }
-    }
-    console.log(playerWord)
+    let answerCheck = [...computerWord]
     if (playerWord == computerWord) {
         winState()
     }
+    for (i = 0; i < playerWord.length; i++) {
+        noLetterMatch(playerWord[i], i)
+        if (playerWord[i] == answerCheck[i]) {
+            exactLetterMatch(playerWord[i], i)
+            answerCheck[i] = "$"
+            console.log("exactmatch"+  answerCheck)
+        }}
 
-}
+    for(i = 0; i < playerWord.length; i++){
+        if (answerCheck.includes(playerWord[i])) {
+            partialLetterMatch(playerWord[i], i)
+            let pm = answerCheck.indexOf(playerWord[i])
+            answerCheck[pm] = "$"
+            console.log("partialmatch" + answerCheck)}}
+    }
+
+
+    // console.log(playerWord)
+
+
+
 function finishGuess() {
     rowCount++ 
     playerWord = []
@@ -105,19 +106,23 @@ function finishGuess() {
     console.log(playerWord)
 }
 function exactLetterMatch(match_letter, index) {
+    let winCounter = 0
     let boxes = document.getElementsByClassName("row-" + rowCount)
     num = playerWord.indexOf(match_letter)
+    boxes[index].classList.remove("no-match")
     boxes[index].classList.add("match")
+    winCounter++
+    if(winCounter == 5){
+        winState()
+    }
 
 }
 
 function partialLetterMatch(letter, index) {
     let boxes = document.getElementsByClassName("row-" + rowCount)
     num = playerWord.indexOf(letter)
+    boxes[index].classList.remove("no-match")
     boxes[index].classList.add("partial-match")
-
-    // console.log(playerWord.indexOf(letter))
-    // console.log(computerWord.indexOf(letter))
 }
 
 function noLetterMatch(letter, index) {
@@ -127,5 +132,8 @@ function noLetterMatch(letter, index) {
 
 function roundCount() {
 }
+
+function winState(){
+    alert("you win!")
+}
 console.log(computerWord)
-console.log(playerWord)

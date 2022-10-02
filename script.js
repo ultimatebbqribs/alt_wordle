@@ -46,15 +46,15 @@ function printGuess() {
 }
 
 function validWords() {
-    // let w = playerWord.join('')
-    // if (validArray.includes(w)) {
+    let w = playerWord.join('')
+    if (validArray.includes(w)) {
         checkResult()
         console.log(rowCount)
         finishGuess()
-    // }
-    // else if (!validArray.includes(w)) {
-    //     alert("not a word")
-    // }
+    }
+    else if (!validArray.includes(w)) {
+        alert("not a word")
+    }
 }
 
 

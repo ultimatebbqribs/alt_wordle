@@ -116,6 +116,7 @@ function exactLetterMatch(match_letter, index) {
     boxes[index].classList.remove("no-match")
     boxes[index].classList.add("match")
     document.getElementById(match_letter).classList.remove("no-match")
+    document.getElementById(match_letter).classList.remove("partial-match")
     document.getElementById(match_letter).classList.add("match")
     winCounter++
     if(winCounter == 5){
@@ -132,6 +133,7 @@ function partialLetterMatch(letter, index) {
     boxes[index].classList.remove("no-match")
     boxes[index].classList.add("partial-match")
     document.getElementById(letter).classList.remove("no-match")
+    document.getElementById(letter).classList.remove("match")
     document.getElementById(letter).classList.add("partial-match")
 }
 

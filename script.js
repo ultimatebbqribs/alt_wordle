@@ -52,8 +52,8 @@ function validWords() {
         checkResult()
         finishGuess()
     }
-    else if (!validArray.includes(w)) {
-        alert("not a word")
+    else {
+        notValidWord()
     }
 }
 
@@ -173,5 +173,15 @@ function playAgain(){
     console.log(computerWord)
 
 }
+//applies ccs animation for wrong guess + added void element.offsetwidth to allow for animation repeats
+function notValidWord(){
+    let boxes = document.getElementsByClassName("row-" + rowCount)
+    for(box of boxes){
+        box.classList.remove("notAWord")
+        void box.offsetWidth
+        box.classList.add("notAWord")
+    }
+}
+
 
 console.log(computerWord)

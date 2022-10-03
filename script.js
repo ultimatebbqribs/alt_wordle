@@ -6,7 +6,7 @@ computerWord = []
 playerWord = []
 
 
-
+//random word generator adds words to Computer word - reloads on page refresh
 function computerPicksWord() {
     let randomNum = Math.floor(Math.random() * allWords.length)
     let cword = allWords[randomNum]
@@ -49,7 +49,7 @@ for (let item of keyArr) {
     // else if(key == "ENTER"){
     //     console.log(key)
     //     pressEnter()}
-    }
+    //}
 
 
 //click counter     
@@ -66,6 +66,7 @@ function playerKey(evt) {
     }
     printGuess()
 }
+//selects active row from documents, and prints inner HTML from player word array 
 function printGuess() {
     if (count < 5) {
         let boxes = document.getElementsByClassName("row-" + rowCount)
@@ -73,7 +74,7 @@ function printGuess() {
         count = playerWord.length
     }
 }
-//checks if player word matches option in valid words array 
+//checks if player word matches option in valid words array - if true, check result and finish guess function, if false > not valid word function 
 function validWords() {
     let w = playerWord.join('')
     if (validArray.includes(w)) {
@@ -85,7 +86,7 @@ function validWords() {
     }
 }
 
-
+//checks if player word has enough letters then passes to valid check function
 function pressEnter() {
     if (playerWord.length == 5) {
         validWords()
@@ -95,14 +96,14 @@ function pressEnter() {
     }
 }
 
+//selects active row, sets inner html for last item to empty, and removes last item from player answer array 
 function pressDelete() {
-    console.log("you pressed del")
     let boxes = document.getElementsByClassName("row-" + rowCount)
-    console.log(boxes[count])
     boxes[count-1].innerHTML = ""
     playerWord.pop()
     count = playerWord.length
 }
+//creates copy of player array, checks if exact match > winstate function 
 
 function checkResult() {
     let answerCheck = [...computerWord]
@@ -127,7 +128,7 @@ function checkResult() {
 
 
 
-
+//increases row counter, resets player word, counter and wincounter and checks for final row of game, if true gameover function. 
 function finishGuess() {
     rowCount++ 
     if(rowCount == 7){
@@ -138,6 +139,7 @@ function finishGuess() {
     count = 0
     winCounter = 0
 }
+//function to update tiles to green for exact match - set timeout used to ensure animation plays before winstate function 
 function exactLetterMatch(match_letter, index) {
     let boxes = document.getElementsByClassName("row-" + rowCount)
     num = playerWord.indexOf(match_letter)
@@ -154,7 +156,7 @@ function exactLetterMatch(match_letter, index) {
     }
 
 }
-
+//Update tiles for partial match 
 function partialLetterMatch(letter, index) {
     let boxes = document.getElementsByClassName("row-" + rowCount)
     num = playerWord.indexOf(letter)
@@ -164,25 +166,26 @@ function partialLetterMatch(letter, index) {
     document.getElementById(letter).classList.remove("match")
     document.getElementById(letter).classList.add("partial-match")
 }
-
+//update tiles for no match
 function noLetterMatch(no_letter, index) {
     let boxes = document.getElementsByClassName("row-" + rowCount)
     boxes[index].classList.add("no-match")
     document.getElementById(no_letter).classList.add("no-match")
 }
 
-function roundCount() {
-}
 
+//alert message for end of game 
 function winState(){
     if(confirm('you win! Would you like to play again?')){
     playAgain()}
     else(alert("no more wordle for you"))
     return
 }
+//alert message for lost game 
 function gameOver(){
     alert("better luck next time! The word was " + allWords[computerPicksWord()].toUpperCase() )
 }
+//resets game state to initial 
 function playAgain(){
     let boxes = document.getElementsByClassName("box")
     for(box of boxes){

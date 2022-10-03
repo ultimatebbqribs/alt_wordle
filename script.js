@@ -22,7 +22,35 @@ let delKey = document.getElementById("delete").addEventListener('click', pressDe
 let keyArr = document.getElementsByClassName('key')
 for (let item of keyArr) {
     item.addEventListener('click', playerKey)
+
 }
+
+//adding physical keyboard event listeners 
+// let keyboard = document.addEventListener('keypress', playerKeyboard)
+
+
+// function playerKeyboard(event){
+//     console.log(event)
+//     let key = event.key.toUpperCase()
+//     console.log(key)
+
+//     if(key == "ENTER"){
+//         console.log(key)
+//         pressEnter()
+//     }
+//     if(event.keyCode == 46 || event.keyCode == 8){
+//         pressDelete()
+//     }
+
+//     else if(key.match(/[A-Z]/i)){
+//     playerWord.push(key)
+//     printGuess()}
+
+    // else if(key == "ENTER"){
+    //     console.log(key)
+    //     pressEnter()}
+    }
+
 
 //click counter     
 let count = playerWord.length
@@ -30,7 +58,7 @@ let count = playerWord.length
 let rowCount = 1
 //letter match counter
 let winCounter = 0
-
+//Get result from onscreen keyboard and pushes to player answer array 
 function playerKey(evt) {
     let clickedId = evt.target.innerHTML
     if (count < 5) {
@@ -45,7 +73,7 @@ function printGuess() {
         count = playerWord.length
     }
 }
-
+//checks if player word matches option in valid words array 
 function validWords() {
     let w = playerWord.join('')
     if (validArray.includes(w)) {

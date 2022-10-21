@@ -16,7 +16,7 @@ function computerPicksWord() {
     return randomNum
 }
 computerPicksWord()
-//add keyboard event listeners 
+//add onscreen keyboard event listeners 
 let enterKey = document.getElementById('enter').addEventListener('click', pressEnter)
 let delKey = document.getElementById("delete").addEventListener('click', pressDelete)
 let keyArr = document.getElementsByClassName('key')
@@ -26,7 +26,7 @@ for (let item of keyArr) {
 }
 
 // adding physical keyboard event listeners 
-// let keyboard = document.addEventListener('keypress', playerKeyboard)
+
 let keyDel = document.addEventListener('keydown', playerKeyboard)
 
 
@@ -38,12 +38,11 @@ function playerKeyboard(event){
     if(key == "BACKSPACE"){
         pressDelete()
     }
-    // if(event.keyCode == 46 || event.keyCode == 8){
-    //     pressDelete()
-    // }
 
-    else if(key.match(/[A-Z]/i) && key !== "ENTER"){
+    else if(key.match(/^[A-Z]$/i)){
     playerWord.push(key)
+    console.log(key)
+
     printGuess()}
     }
 
@@ -88,7 +87,7 @@ function pressEnter() {
         validWords()
     }
     else {
-        alert("not enough letters")
+        notValidWord()
     }
 }
 

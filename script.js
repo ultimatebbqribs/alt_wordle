@@ -25,31 +25,27 @@ for (let item of keyArr) {
 
 }
 
-//adding physical keyboard event listeners 
+// adding physical keyboard event listeners 
 // let keyboard = document.addEventListener('keypress', playerKeyboard)
+let keyDel = document.addEventListener('keydown', playerKeyboard)
 
 
-// function playerKeyboard(event){
-//     console.log(event)
-//     let key = event.key.toUpperCase()
-//     console.log(key)
+function playerKeyboard(event){
+    let key = event.key.toUpperCase()
+    if(key == "ENTER"){
+        pressEnter()
+    }
+    if(key == "BACKSPACE"){
+        pressDelete()
+    }
+    // if(event.keyCode == 46 || event.keyCode == 8){
+    //     pressDelete()
+    // }
 
-//     if(key == "ENTER"){
-//         console.log(key)
-//         pressEnter()
-//     }
-//     if(event.keyCode == 46 || event.keyCode == 8){
-//         pressDelete()
-//     }
-
-//     else if(key.match(/[A-Z]/i)){
-//     playerWord.push(key)
-//     printGuess()}
-
-    // else if(key == "ENTER"){
-    //     console.log(key)
-    //     pressEnter()}
-    //}
+    else if(key.match(/[A-Z]/i) && key !== "ENTER"){
+    playerWord.push(key)
+    printGuess()}
+    }
 
 
 //click counter     
